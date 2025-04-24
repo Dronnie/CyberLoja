@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShirt - Camisetas Cyberpunk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #d300c5;
+            --dark-bg: #0d0221;
+            --darker-bg: #05010f;
+            --text-color: #f8f8f8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--darker-bg);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--neon-blue);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--neon-blue);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cart-btn {
+            background-color: var(--neon-purple);
+            color: var(--text-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+        
+        .cart-btn:hover {
+            background-color: var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+        
+        /* Hero Carousel */
+        .hero {
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 0 30px rgba(5, 217, 232, 0.3);
+        }
+        
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            max-width: 500px;
+            background-color: rgba(13, 2, 33, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 3px solid var(--neon-blue);
+        }
+        
+        .slide-content h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+        
+        .slide-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .shop-now {
+            background-color: var(--neon-blue);
+            color: var(--darker-bg);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .shop-now:hover {
+            background-color: var(--neon-pink);
+            color: var(--text-color);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .carousel-dot.active {
+            background-color: var(--neon-blue);
+            transform: scale(1.2);
+        }
+        
+        /* About Cyberpunk */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(5, 217, 232, 0.2);
+        }
+        
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+        }
+        
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(5, 217, 232, 0.3);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Featured Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background-color: var(--darker-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(5, 217, 232, 0.2);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(5, 217, 232, 0.3);
+            border-color: var(--neon-blue);
+        }
+        
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--neon-blue);
+        }
+        
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--neon-pink);
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            background-color: var(--neon-purple);
+            color: var(--text-color);
+            border: none;
+            padding: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--darker-bg);
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 20px;
+            margin: 60px 0;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(211, 0, 197, 0.2);
+        }
+        
+        .newsletter h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+        }
+        
+        .newsletter p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 20px 0 0 20px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .newsletter-btn {
+            padding: 15px 25px;
+            background-color: var(--neon-purple);
+            color: var(--text-color);
+            border: none;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(--neon-pink);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--neon-blue);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--neon-pink);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">CYBERSHIRT</div>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Produtos</a>
+                    <a href="#">Sobre</a>
+                    <a href="#">Contato</a>
+                </div>
+                <button class="cart-btn">Carrinho (0)</button>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Hero Carousel -->
+        <section class="hero">
+            <div class="carousel">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <div class="slide-content">
+                        <h2>Coleção Neon Nights</h2>
+                        <p>Descubra nossa nova linha de camisetas com design cyberpunk que brilham no escuro.</p>
+                        <button class="shop-now">Compre Agora</button>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <div class="slide-content">
+                        <h2>Tecnologia e Estilo</h2>
+                        <p>Camisetas com tecidos high-tech que se adaptam à temperatura do seu corpo.</p>
+                        <button class="shop-now">Explore</button>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <div class="slide-content">
+                        <h2>Edição Limitada</h2>
+                        <p>Adquira as camisetas exclusivas da colaboração com artistas cyberpunk renomados.</p>
+                        <button class="shop-now">Edição Limitada</button>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+            </div>
+        </section>
+        
+        <!-- About Cyberpunk -->
+        <section class="section">
+            <h2 class="section-title">O QUE É CYBERPUNK?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>A Estética do Futuro Distópico</h3>
+                    <p>Cyberpunk é um subgênero da ficção científica que combina alta tecnologia com baixa qualidade de vida. Visualmente, é caracterizado por neon brilhante, sombras profundas, arquitetura futurista e uma mistura de culturas orientais e ocidentais.</p>
+                    <p>Nossas camisetas capturam a essência dessa estética, com designs que refletem o contraste entre o avanço tecnológico e a decadência urbana.</p>
+                    <p>Cada peça é uma declaração de estilo para aqueles que veem beleza no caos do futuro que está por vir.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cidade cyberpunk">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Products -->
+        <section class="section">
+            <h2 class="section-title">DESTAQUES</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Camiseta Cyber Neon">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Cyber Neon</h3>
+                        <p class="product-price">R$ 89,90</p>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Camiseta Hacker Rebellion">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Hacker Rebellion</h3>
+                        <p class="product-price">R$ 99,90</p>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Camiseta Neon Samurai">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Neon Samurai</h3>
+                        <p class="product-price">R$ 109,90</p>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Camiseta Digital Ghost">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Digital Ghost</h3>
+                        <p class="product-price">R$ 94,90</p>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <h2>JUNTE-SE À NOSSA CYBER-TRIBU</h2>
+            <p>Assine nossa newsletter para receber atualizações sobre novos lançamentos, promoções exclusivas e conteúdo sobre a cultura cyberpunk.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="newsletter-btn">Assinar</button>
+            </form>
+        </section>
+    </main>
+    <!-- Product Page (adicione este link no menu) -->
+<a href="#" id="product-link" style="display:none;">Produto</a>
+
+<!-- Modal de Produto -->
+<div class="product-modal" id="product-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="product-detail">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cyber Neon" id="main-product-image">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Thumb 1" class="thumbnail active">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Thumb 2" class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Thumb 3" class="thumbnail">
+                </div>
+            </div>
+            <div class="product-info">
+                <h1 id="product-title">Cyber Neon</h1>
+                <div class="price" id="product-price">R$ 89,90</div>
+                <div class="rating">
+                    ★★★★☆ <span class="reviews">(42 avaliações)</span>
+                </div>
+                <div class="description">
+                    <p>Camiseta premium com estampa cyberpunk em tinta especial que brilha no escuro. Feita com algodão 100% orgânico e tecnologia de secagem rápida.</p>
+                    <ul>
+                        <li>Estampa resistente a lavagens</li>
+                        <li>Tecido respirável</li>
+                        <li>Disponível em 5 tamanhos</li>
+                        <li>Produção sustentável</li>
+                    </ul>
+                </div>
+                
+                <div class="size-selector">
+                    <h3>Tamanho:</h3>
+                    <div class="sizes">
+                        <button class="size-btn">PP</button>
+                        <button class="size-btn active">P</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">G</button>
+                        <button class="size-btn">GG</button>
+                    </div>
+                </div>
+                
+                <div class="color-selector">
+                    <h3>Cor:</h3>
+                    <div class="colors">
+                        <button class="color-btn" style="background-color: #000000;" data-color="Preto"></button>
+                        <button class="color-btn" style="background-color: #2a52be;" data-color="Azul"></button>
+                        <button class="color-btn" style="background-color: #ff2a6d;" data-color="Rosa Neon"></button>
+                        <button class="color-btn" style="background-color: #36454F;" data-color="Cinza"></button>
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <h3>Quantidade:</h3>
+                    <div class="qty-controls">
+                        <button class="qty-minus">-</button>
+                        <input type="number" value="1" min="1" class="qty-input">
+                        <button class="qty-plus">+</button>
+                    </div>
+                </div>
+                
+                <button class="buy-now" id="buy-now-btn">Comprar Agora</button>
+                <button class="add-to-cart-modal">Adicionar ao Carrinho</button>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">🚚</span>
+                        <span>Frete grátis para todo Brasil</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">↩️</span>
+                        <span>Devolução gratuita em 30 dias</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Pagamento -->
+<div class="payment-modal" id="payment-modal">
+    <div class="payment-content">
+        <span class="close-payment">&times;</span>
+        <h2>Finalizar Compra</h2>
+        <div class="payment-methods">
+            <button class="payment-method active" data-method="credit">
+                <img src="https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Logo.png" alt="Cartão">
+                Cartão de Crédito
+            </button>
+            <button class="payment-method" data-method="pix">
+                <img src="https://logodownload.org/wp-content/uploads/2020/08/pix-logo.png" alt="Pix">
+                Pix
+            </button>
+            <button class="payment-method" data-method="paypal">
+                <img src="https://logos-world.net/wp-content/uploads/2020/07/PayPal-Logo.png" alt="PayPal">
+                PayPal
+            </button>
+        </div>
+        
+        <div class="payment-form" id="credit-form">
+            <div class="form-group">
+                <label for="card-number">Número do Cartão</label>
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="form-group">
+                <label for="card-name">Nome no Cartão</label>
+                <input type="text" id="card-name" placeholder="FULANO DA SILVA">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="card-expiry">Validade</label>
+                    <input type="text" id="card-expiry" placeholder="MM/AA">
+                </div>
+                <div class="form-group">
+                    <label for="card-cvv">CVV</label>
+                    <input type="text" id="card-cvv" placeholder="123">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="card-installments">Parcelamento</label>
+                <select id="card-installments">
+                    <option value="1">1x de R$ 89,90 sem juros</option>
+                    <option value="2">2x de R$ 44,95 sem juros</option>
+                    <option value="3">3x de R$ 29,97 sem juros</option>
+                    <option value="4">4x de R$ 22,48 sem juros</option>
+                </select>
+            </div>
+            <button class="confirm-payment" id="confirm-credit">Confirmar Pagamento</button>
+        </div>
+        
+        <div class="payment-form hidden" id="pix-form">
+            <div class="pix-info">
+                <p>Você será redirecionado para gerar o QR Code Pix após confirmar a compra.</p>
+                <p>O pedido será processado assim que o pagamento for confirmado.</p>
+            </div>
+            <button class="confirm-payment" id="confirm-pix">Gerar QR Code Pix</button>
+        </div>
+        
+        <div class="payment-form hidden" id="paypal-form">
+            <div class="paypal-info">
+                <p>Você será redirecionado para o site do PayPal para concluir seu pagamento.</p>
+                <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal">
+            </div>
+            <button class="confirm-payment" id="confirm-paypal">Pagar com PayPal</button>
+        </div>
+    </div>
+</div>
+
+ <!-- Modal do Carrinho -->
+<div class="cart-modal" id="cart-modal">
+    <div class="cart-content">
+        <span class="close-cart">&times;</span>
+        <h2>Seu Carrinho</h2>
+        <div class="cart-items" id="cart-items">
+            <!-- Itens serão adicionados dinamicamente aqui -->
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+                <span>Frete</span>
+                <span id="cart-shipping">Grátis</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">Finalizar Compra</button>
+            <button class="continue-shopping" id="continue-shopping">Continuar Comprando</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos para a tela de produto */
+    .product-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(5, 1, 15, 0.9);
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    
+    .modal-content {
+        background-color: var(--darker-bg);
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 20px;
+        max-width: 1200px;
+        position: relative;
+        border: 1px solid var(--neon-purple);
+        box-shadow: 0 0 30px rgba(211, 0, 197, 0.3);
+    }
+    
+    .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .close-modal:hover {
+        color: var(--neon-pink);
+    }
+    
+    .product-detail {
+        display: flex;
+        gap: 40px;
+    }
+    
+    .product-gallery {
+        flex: 1;
+    }
+    
+    .main-image {
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .main-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .thumbnail-container {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .thumbnail {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+    }
+    
+    .thumbnail:hover, .thumbnail.active {
+        opacity: 1;
+        border-color: var(--neon-blue);
+    }
+    
+    .product-info {
+        flex: 1;
+    }
+    
+    .product-info h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+        color: var(--neon-blue);
+    }
+    
+    .price {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--neon-pink);
+        margin-bottom: 15px;
+    }
+    
+    .rating {
+        margin-bottom: 20px;
+        color: var(--neon-blue);
+    }
+    
+    .reviews {
+        color: var(--text-color);
+        font-size: 14px;
+    }
+    
+    .description {
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+    
+    .description ul {
+        margin-top: 15px;
+        padding-left: 20px;
+    }
+    
+    .description li {
+        margin-bottom: 8px;
+    }
+    
+    .size-selector, .color-selector, .quantity-selector {
+        margin-bottom: 25px;
+    }
+    
+    .size-selector h3, .color-selector h3, .quantity-selector h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    
+    .sizes {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .size-btn {
+        padding: 8px 15px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--text-color);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .size-btn:hover, .size-btn.active {
+        background-color: var(--neon-blue);
+        color: var(--darker-bg);
+        border-color: var(--neon-blue);
+    }
+    
+    .colors {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .color-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s;
+    }
+    
+    .color-btn:hover, .color-btn.active {
+        border-color: var(--text-color);
+        transform: scale(1.1);
+    }
+    
+    .qty-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .qty-minus, .qty-plus {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: var(--text-color);
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .qty-input {
+        width: 50px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--text-color);
+        padding: 5px;
+        border-radius: 20px;
+    }
+    
+    .buy-now, .add-to-cart-modal {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .buy-now {
+        background-color: var(--neon-blue);
+        color: var(--darker-bg);
+        border: none;
+    }
+    
+    .buy-now:hover {
+        background-color: var(--neon-pink);
+        color: var(--text-color);
+        box-shadow: 0 0 15px var(--neon-pink);
+    }
+    
+    .add-to-cart-modal {
+        background-color: var(--neon-purple);
+        color: var(--text-color);
+        border: none;
+    }
+    
+    .add-to-cart-modal:hover {
+        background-color: var(--neon-pink);
+        box-shadow: 0 0 15px var(--neon-pink);
+    }
+    
+    .product-meta {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    /* Estilos para o modal de pagamento */
+    .payment-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(5, 1, 15, 0.9);
+        z-index: 1001;
+    }
+    
+    .payment-content {
+        background-color: var(--darker-bg);
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 20px;
+        max-width: 600px;
+        position: relative;
+        border: 1px solid var(--neon-blue);
+        box-shadow: 0 0 30px rgba(5, 217, 232, 0.3);
+    }
+    
+    .close-payment {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .close-payment:hover {
+        color: var(--neon-pink);
+    }
+    
+    .payment-content h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--neon-pink);
+    }
+    
+    .payment-methods {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+    
+    .payment-method {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 15px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .payment-method img {
+        height: 20px;
+    }
+    
+    .payment-method:hover, .payment-method.active {
+        background-color: var(--neon-blue);
+        border-color: var(--neon-blue);
+    }
+    
+    .payment-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+    }
+    
+    .form-group input, .form-group select {
+        padding: 12px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--text-color);
+        border-radius: 20px;
+    }
+    
+    .form-row {
+        display: flex;
+        gap: 15px;
+    }
+    
+    .form-row .form-group {
+        flex: 1;
+    }
+    
+    .confirm-payment {
+        padding: 15px;
+        background-color: var(--neon-blue);
+        color: var(--darker-bg);
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 20px;
+    }
+    
+    .confirm-payment:hover {
+        background-color: var(--neon-pink);
+        color: var(--text-color);
+        box-shadow: 0 0 15px var(--neon-pink);
+    }
+    
+    .pix-info, .paypal-info {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .paypal-info img {
+        margin-top: 20px;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    @media (max-width: 768px) {
+        .product-detail {
+            flex-direction: column;
+        }
+        
+        .main-image {
+            height: 300px;
+        }
+        
+        .modal-content, .payment-content {
+            margin: 20px;
+            padding: 20px;
+        }
+    }
+
+    /* Estilos para o carrinho */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 1, 15, 0.9);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.cart-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    background-color: var(--darker-bg);
+    padding: 30px;
+    overflow-y: auto;
+    border-left: 1px solid var(--neon-purple);
+    box-shadow: -5px 0 30px rgba(211, 0, 197, 0.3);
+}
+
+.close-cart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.close-cart:hover {
+    color: var(--neon-pink);
+}
+
+.cart-content h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: var(--neon-blue);
+    text-align: center;
+}
+
+.cart-items {
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    position: relative;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--neon-blue);
+}
+
+.cart-item-price {
+    font-size: 14px;
+    color: var(--neon-pink);
+    margin-bottom: 10px;
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-qty {
+    width: 50px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.remove-item {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.remove-item:hover {
+    color: var(--neon-pink);
+}
+
+.cart-summary {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.summary-row.total {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.checkout-btn, .continue-shopping {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.checkout-btn {
+    background-color: var(--neon-blue);
+    color: var(--darker-bg);
+    border: none;
+}
+
+.checkout-btn:hover {
+    background-color: var(--neon-pink);
+    color: var(--text-color);
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.continue-shopping {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--neon-purple);
+}
+
+.continue-shopping:hover {
+    background-color: var(--neon-purple);
+    box-shadow: 0 0 15px var(--neon-purple);
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.empty-cart p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .cart-content {
+        width: 100%;
+        padding: 20px;
+    }
+}
+</style>
+
+<script>
+    // Adicione este script ao seu JS existente
+    document.addEventListener('DOMContentLoaded', function() {
+        // Abrir modal de produto quando clicar em um produto
+        const productCards = document.querySelectorAll('.product-card');
+        const productModal = document.getElementById('product-modal');
+        
+        productCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.product-title').textContent;
+                const price = this.querySelector('.product-price').textContent;
+                const imgSrc = this.querySelector('img').src;
+                
+                document.getElementById('product-title').textContent = title;
+                document.getElementById('product-price').textContent = price;
+                document.getElementById('main-product-image').src = imgSrc;
+                
+                productModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Fechar modal
+        const closeModal = document.querySelector('.close-modal');
+        closeModal.addEventListener('click', function() {
+            productModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Trocar imagens pelos thumbnails
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.getElementById('main-product-image');
+        
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                mainImage.src = this.src.replace('/200/', '/1350/');
+            });
+        });
+        
+        // Selecionar tamanho
+        const sizeBtns = document.querySelectorAll('.size-btn');
+        sizeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                sizeBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Selecionar cor
+        const colorBtns = document.querySelectorAll('.color-btn');
+        colorBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                colorBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Controle de quantidade
+        const qtyMinus = document.querySelector('.qty-minus');
+        const qtyPlus = document.querySelector('.qty-plus');
+        const qtyInput = document.querySelector('.qty-input');
+        
+        qtyMinus.addEventListener('click', function() {
+            let value = parseInt(qtyInput.value);
+            if (value > 1) {
+                qtyInput.value = value - 1;
+            }
+        });
+        
+        qtyPlus.addEventListener('click', function() {
+            let value = parseInt(qtyInput.value);
+            qtyInput.value = value + 1;
+        });
+        
+        // Abrir modal de pagamento
+        const buyNowBtn = document.getElementById('buy-now-btn');
+        const paymentModal = document.getElementById('payment-modal');
+        
+        buyNowBtn.addEventListener('click', function() {
+            paymentModal.style.display = 'block';
+        });
+        
+        // Fechar modal de pagamento
+        const closePayment = document.querySelector('.close-payment');
+        closePayment.addEventListener('click', function() {
+            paymentModal.style.display = 'none';
+        });
+        
+        // Selecionar método de pagamento
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const paymentForms = document.querySelectorAll('.payment-form');
+        
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+                
+                const methodType = this.getAttribute('data-method');
+                paymentForms.forEach(form => form.classList.add('hidden'));
+                document.getElementById(`${methodType}-form`).classList.remove('hidden');
+            });
+        });
+        
+        // Adicionar ao carrinho do modal
+        const addToCartModal = document.querySelector('.add-to-cart-modal');
+        const cartBtn = document.querySelector('.cart-btn');
+        let cartCount = 0;
+        
+        addToCartModal.addEventListener('click', function() {
+            cartCount++;
+            cartBtn.textContent = `Carrinho (${cartCount})`;
+            
+            this.textContent = 'Adicionado!';
+            this.style.backgroundColor = '#4CAF50';
+            
+            setTimeout(() => {
+                this.textContent = 'Adicionar ao Carrinho';
+                this.style.backgroundColor = 'var(--neon-purple)';
+            }, 1500);
+        });
+    });
+    // Adicione esta parte ao seu script existente
+
+// Variáveis do carrinho
+let cart = [];
+
+// Abrir carrinho
+const cartBtn = document.querySelector('.cart-btn');
+const cartModal = document.getElementById('cart-modal');
+
+cartBtn.addEventListener('click', function() {
+    cartModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    updateCartDisplay();
+});
+
+// Fechar carrinho
+const closeCart = document.querySelector('.close-cart');
+const continueShopping = document.getElementById('continue-shopping');
+
+closeCart.addEventListener('click', function() {
+    cartModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+});
+
+continueShopping.addEventListener('click', function() {
+    cartModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+});
+
+// Adicionar ao carrinho (atualize a função existente)
+function addToCart(productTitle, productPrice, productImage) {
+    // Verificar se o produto já está no carrinho
+    const existingItem = cart.find(item => item.title === productTitle);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            title: productTitle,
+            price: parseFloat(productPrice.replace('R$ ', '').replace(',', '.')),
+            image: productImage,
+            quantity: 1
+        });
+    }
+    
+    // Atualizar contador do carrinho
+    updateCartCount();
+    // Atualizar exibição do carrinho
+    updateCartDisplay();
+    
+    // Feedback visual
+    const addButton = event.target;
+    addButton.textContent = 'Adicionado!';
+    addButton.style.backgroundColor = '#4CAF50';
+    
+    setTimeout(() => {
+        addButton.textContent = 'Adicionar ao Carrinho';
+        addButton.style.backgroundColor = 'var(--neon-purple)';
+    }, 1500);
+}
+
+// Atualizar contador do carrinho
+function updateCartCount() {
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    cartBtn.textContent = `Carrinho (${totalItems})`;
+}
+
+// Atualizar exibição do carrinho
+function updateCartDisplay() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartSubtotal = document.getElementById('cart-subtotal');
+    const cartTotal = document.getElementById('cart-total');
+    
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+            <div class="empty-cart">
+                <p>Seu carrinho está vazio</p>
+                <button class="continue-shopping">Continuar Comprando</button>
+            </div>
+        `;
+        
+        // Adicionar evento ao botão
+        document.querySelector('.empty-cart .continue-shopping').addEventListener('click', function() {
+            cartModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    } else {
+        cartItemsContainer.innerHTML = cart.map(item => `
+            <div class="cart-item" data-title="${item.title}">
+                <button class="remove-item">&times;</button>
+                <div class="cart-item-image">
+                    <img src="${item.image}" alt="${item.title}">
+                </div>
+                <div class="cart-item-details">
+                    <h3 class="cart-item-title">${item.title}</h3>
+                    <p class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                    <div class="cart-item-actions">
+                        <input type="number" min="1" value="${item.quantity}" class="cart-item-qty">
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        
+        // Adicionar eventos aos botões de remover
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemTitle = this.closest('.cart-item').getAttribute('data-title');
+                cart = cart.filter(item => item.title !== itemTitle);
+                updateCartCount();
+                updateCartDisplay();
+            });
+        });
+        
+        // Adicionar eventos aos inputs de quantidade
+        document.querySelectorAll('.cart-item-qty').forEach(input => {
+            input.addEventListener('change', function() {
+                const itemTitle = this.closest('.cart-item').getAttribute('data-title');
+                const item = cart.find(item => item.title === itemTitle);
+                if (item) {
+                    item.quantity = parseInt(this.value);
+                    updateCartDisplay();
+                }
+            });
+        });
+    }
+    
+    // Calcular totais
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    cartSubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    cartTotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+}
+
+// Atualize os eventos de adicionar ao carrinho para usar a nova função
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+        const productCard = this.closest('.product-card');
+        const title = productCard.querySelector('.product-title').textContent;
+        const price = productCard.querySelector('.product-price').textContent;
+        const image = productCard.querySelector('img').src;
+        
+        addToCart(title, price, image);
+    });
+});
+
+document.querySelector('.add-to-cart-modal').addEventListener('click', function() {
+    const title = document.getElementById('product-title').textContent;
+    const price = document.getElementById('product-price').textContent;
+    const image = document.getElementById('main-product-image').src;
+    const quantity = parseInt(document.querySelector('.qty-input').value);
+    
+    // Verificar se o produto já está no carrinho
+    const existingItem = cart.find(item => item.title === title);
+    
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({
+            title: title,
+            price: parseFloat(price.replace('R$ ', '').replace(',', '.')),
+            image: image,
+            quantity: quantity
+        });
+    }
+    
+    updateCartCount();
+    updateCartDisplay();
+    
+    this.textContent = 'Adicionado!';
+    this.style.backgroundColor = '#4CAF50';
+    
+    setTimeout(() => {
+        this.textContent = 'Adicionar ao Carrinho';
+        this.style.backgroundColor = 'var(--neon-purple)';
+    }, 1500);
+});
+
+// Finalizar compra
+document.getElementById('checkout-btn').addEventListener('click', function() {
+    if (cart.length > 0) {
+        // Aqui você pode redirecionar para a página de checkout
+        // ou abrir o modal de pagamento que já criamos
+        paymentModal.style.display = 'block';
+        cartModal.style.display = 'none';
+    } else {
+        alert('Seu carrinho está vazio!');
+    }
+});
+</script>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Sobre Nós</a>
+                <a href="#">Termos de Serviço</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Trocas e Devoluções</a>
+                <a href="#">Contato</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon">FB</a>
+                <a href="#" class="social-icon">IG</a>
+                <a href="#" class="social-icon">TW</a>
+                <a href="#" class="social-icon">YT</a>
+            </div>
+            <p class="copyright">© 2023 CyberShirt. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Carousel Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let currentSlide = 0;
+            
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+            
+            // Auto-rotate slides every 5 seconds
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // Pause on hover
+            const carousel = document.querySelector('.carousel');
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+            
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    showSlide(index);
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            });
+            
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartBtn = document.querySelector('.cart-btn');
+            let cartCount = 0;
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    cartCount++;
+                    cartBtn.textContent = `Carrinho (${cartCount})`;
+                    
+                    // Animation
+                    this.textContent = 'Adicionado!';
+                    this.style.backgroundColor = '#4CAF50';
+                    
+                    setTimeout(() => {
+                        this.textContent = 'Adicionar ao Carrinho';
+                        this.style.backgroundColor = 'var(--neon-purple)';
+                    }, 1500);
+                });
+            });
+            
+            // Newsletter form
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('.newsletter-input');
+                alert(`Obrigado por assinar nossa newsletter! Um e-mail de confirmação foi enviado para ${emailInput.value}`);
+                emailInput.value = '';
+            });
+        });
+    </script>
+</body>
+</html>
